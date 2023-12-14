@@ -16,3 +16,8 @@ func hide_and_show(animation):
 		node.hide()
 	
 	animation.show()
+
+func flip_all_h(flip):
+	for node in get_children():
+		node.flip_h = flip
+	

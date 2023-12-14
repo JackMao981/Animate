@@ -19,14 +19,22 @@ func _physics_process(delta):
 	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	move()
 	animate()
+	move()
 	move_and_slide()
 
 func animate():
-	if (Input.is_action_pressed("right")):
+	if (velocity.y != 0):
+		$Character.hide_and_show($Character/Jump) 		
+		$AnimationPlayer.play("jump")				
+	elif (Input.is_action_pressed("right")):
+		$Character.flip_all_h(false)
 		$Character.hide_and_show($Character/Walk) 
 		$AnimationPlayer.play("walk")
+	elif (Input.is_action_pressed("left")):
+		$Character.flip_all_h(true)
+		$Character.hide_and_show($Character/Walk) 		
+		$AnimationPlayer.play("walk")		
 	else:
 		$Character.hide_and_show($Character/Idle)
 		$AnimationPlayer.play("idle")
